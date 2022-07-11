@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-//Достоинства карт
+//Р”РѕСЃС‚РѕРёРЅСЃС‚РІР° РєР°СЂС‚
 enum Dignity
 {
 	two,
@@ -22,7 +22,7 @@ enum Dignity
 	amountDignity
 };
 
-//Масти карт
+//РњР°СЃС‚Рё РєР°СЂС‚
 enum Suit
 {
 	Spades,
@@ -32,14 +32,14 @@ enum Suit
 	amountSuit
 };
 
-//Структура для карт
+//РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РєР°СЂС‚
 struct Card
 {
 	Suit suit;
 	Dignity dignity;
 };
 
-//Вывод достоинства и масти карты двумя буквами
+//Р’С‹РІРѕРґ РґРѕСЃС‚РѕРёРЅСЃС‚РІР° Рё РјР°СЃС‚Рё РєР°СЂС‚С‹ РґРІСѓРјСЏ Р±СѓРєРІР°РјРё
 void printCard(const Card& card)
 {
 	switch (card.dignity)
@@ -86,7 +86,7 @@ void printCard(const Card& card)
 	}
 }
 
-//Инициализация всех карт и мастей
+//РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РІСЃРµС… РєР°СЂС‚ Рё РјР°СЃС‚РµР№
 void printDeck(const std::array<Card, 52>& deck)
 {
 	int i = std::size(deck);
@@ -98,7 +98,7 @@ void printDeck(const std::array<Card, 52>& deck)
 	std::cout << "\n";
 }
 
-/*Меняет карты*/
+//РњРµРЅСЏРµРј РєР°СЂС‚С‹
 void swapCard(Card& a, Card& b)
 {
 	Card temp = a;
@@ -106,14 +106,14 @@ void swapCard(Card& a, Card& b)
 	b = temp;
 }
 
-//Генерация случайных чисел в заданном диапазоне
+//Р“РµРЅРµСЂР°С†РёСЏ СЃР»СѓС‡Р°Р№РЅС‹С… С‡РёСЃРµР» РІ Р·Р°РґР°РЅРЅРѕРј РґРёР°РїР°Р·РѕРЅРµ
 int getrandom(int min, int max)
 {
 	static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
 	return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
-//Поменять карты местами
+//РџРѕРјРµРЅСЏС‚СЊ РєР°СЂС‚С‹ РјРµСЃС‚Р°РјРё
 void shuffleDeck(std::array<Card, 52>& deck)
 {
 	for (int i = 0; i < 52; ++i)
@@ -123,6 +123,7 @@ void shuffleDeck(std::array<Card, 52>& deck)
 	}
 }
 
+//РљР°СЂС‚С‹ РёС… Р·РЅР°С‡РёРјРѕСЃС‚СЊ
 int getCardValue(const Card& card)
 {
 	switch (card.dignity)
@@ -156,10 +157,10 @@ int getCardValue(const Card& card)
 	}
 }
 
-//Взять карту или остановиться
+//Р’Р·СЏС‚СЊ РєР°СЂС‚Сѓ РёР»Рё РѕСЃС‚Р°РЅРѕРІРёС‚СЊСЃСЏ
 char getChoice()
 {
-	std::cout << "'h' для взятия карты, 's', чтобы остановиться: ";
+	std::cout << "'h' РґР»СЏ РІР·СЏС‚РёСЏ РєР°СЂС‚С‹, 's', С‡С‚РѕР±С‹ РѕСЃС‚Р°РЅРѕРІРёС‚СЊСЃСЏ: ";
 	char choice;
 	do
 	{
@@ -168,6 +169,7 @@ char getChoice()
 	return choice;
 }
  
+//РЎРёРЅС‚Р°РєСЃРёСЃ РёРіСЂС‹
 bool playBlackJack(const std::array<Card, 52>& deck)
 {
 	setlocale(LC_ALL, "");
@@ -177,14 +179,14 @@ bool playBlackJack(const std::array<Card, 52>& deck)
 	int dealerSum = 0;
 
 	dealerSum += getCardValue(*cardptr++);
-	std::cout << "Счёт у диллера открыт: " << dealerSum << "\n";
+	std::cout << "РЎС‡С‘С‚ Сѓ РґРёР»Р»РµСЂР° РѕС‚РєСЂС‹С‚:  " << dealerSum << "\n";
 
 	playerSum += getCardValue(*cardptr++);
 	playerSum += getCardValue(*cardptr++);
 
 	while (1)
 	{
-		std::cout << "У тебя сейчас: " << playerSum << std::endl;
+		std::cout << "РЈ С‚РµР±СЏ СЃРµР№С‡Р°СЃ: " << playerSum << std::endl;
 
 		if (playerSum > 21)
 			return false;
@@ -198,7 +200,7 @@ bool playBlackJack(const std::array<Card, 52>& deck)
 	while (dealerSum < 17)
 	{
 		dealerSum += getCardValue(*cardptr++);
-		std::cout << "У диллера сейчас: " << dealerSum << '\n';
+		std::cout << "РЈ РґРёР»Р»РµСЂР° СЃРµР№С‡Р°СЃ: " << dealerSum << '\n';
 	}
 	if (dealerSum > 21)
 		return true;
@@ -212,7 +214,7 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 	rand();
 
-	/*Массив 52 карт*/
+	/*РњР°СЃСЃРёРІ 52 РєР°СЂС‚*/
 	Card card{};
 	card.dignity = { King };
 	std::array<Card, 52>deck{};
@@ -228,9 +230,9 @@ int main()
 	shuffleDeck(deck);
 	
 	if (playBlackJack(deck)) 
-		std::cout << "Ты выиграл\n"; 
+		std::cout << "Е‡Е± ГўЕ±ДЌДѓД‘Е•Г«\n"; 
 	else 
-		std::cout << "Ты проиграл\n";
+		std::cout << "Е‡Е± ДЏД‘Г®ДЌДѓД‘Е•Г«\n";
 
 	system("pause");
 	return 0;
